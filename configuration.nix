@@ -200,7 +200,8 @@
     pkgs.gnome.zenity
     pkgs.lsof
     gparted
-    filezilla
+    pkgs.libfilezilla
+    pkgs.filezilla
     libreoffice
     zoom-us
     vlc
