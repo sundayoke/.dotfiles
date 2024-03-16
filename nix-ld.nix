@@ -18,6 +18,7 @@
     expat
     fontconfig
     freetype
+    fuse
     fuse3
     gdk-pixbuf
     glib

@@ -9,10 +9,13 @@
     nixpkgs.url = "nixpkgs/nixos-23.11";
 
     # use the following for unstable:
-    # nixpkgs.url = "nixpkgs/nixos-unstable";
+    #nixpkgs.url = "nixpkgs/nixos-unstable";
 
     # or any branch you want:
     # nixpkgs.url = "nixpkgs/{BRANCH-NAME}";
+
+     # helix editor, use the master branch
+    helix.url = "github:helix-editor/helix/master";
   };
 
   outputs = { self, nixpkgs, ... }:
