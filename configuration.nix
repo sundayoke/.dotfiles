@@ -19,22 +19,6 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.useOSProber = true;
 
-  #starting polkit authentication
-  systemd = {
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-          Type = "simple";
-          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-          Restart = "on-failure";
-          RestartSec = 1;
-          TimeoutStopSec = 10;
-        };
-    };
-  };
 
   # Bootloader.
   #boot.loader.systemd-boot.enable = true;
@@ -75,20 +59,13 @@
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  #services.xserver.displayManager.gdm.enable = true;
+  #services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
   #services.xserver.displayManager.sddm.wayland = true;
-  #services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  #services.xserver.desktopManager.plasma6.enable = true;
-  services.xserver.displayManager.defaultSession = "plasmawayland";
-
-  #Enable the Plasma 5 Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
-  #services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.displayManager.gdm.wayland = false;
+  services.xserver.desktopManager.gnome.enable = true;
   #services.xserver.desktopManager.plasma5.enable = true;
-
+  #services.xserver.desktopManager.plasma6.enable = true;
+  #services.xserver.displayManager.defaultSession = "plasmawayland";
 
   # Window Managers
   #services.xserver.windowManager.stumpwm.enable = true;
