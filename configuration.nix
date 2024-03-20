@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./nix-ld.nix
+      #./nix-ld.nix
     ];
 
 
@@ -101,6 +101,7 @@
         i3status # gives you the default i3 status bar
         i3lock #default i3 screen locker
         i3blocks #if you are planning on using i3blocks over i3status
+        rofi
      ];
     };
 
@@ -195,7 +196,6 @@
     pkgs.vscode
     git
     pkgs.spotify
-    pkgs.steam-tui
     pkgs.dialog
     pkgs.gnome.zenity
     pkgs.lsof
@@ -260,7 +260,7 @@
     pkgs.libsForQt5.kate
     pkgs.authy
     pkgs.jre8
-    pkgs.rofi
+    #pkgs.rofi
     pkgs.lxde.lxrandr
     pkgs.networkmanagerapplet
     pkgs.networkmanagerapplet
@@ -284,6 +284,7 @@
     pkgs.tk
     pkgs.mktemp
     pkgs.gnupatch
+    pkgs.ethtool
     #Python
     #(python3.withPackages(ps: with ps; [ import tcl tk matplotlib django flask pandas libz requests]))
     pkgs.python311Full
@@ -295,6 +296,8 @@
     helix
     pkgs.haskellPackages.libfuse3
     pkgs.python311Packages.pyfuse3
+    #pkgs.kitty
+    #pkgs.wofi
 
 
     # support both 32- and 64-bit applications
@@ -351,12 +354,12 @@
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
-  programs.hyprland = {
-    # Install the packages from nixpkgs
-    enable = true;
-    # Whether to enable XWayland
-    xwayland.enable = true;
-  };
+  #programs.hyprland = {
+   ## Install the packages from nixpkgs
+    #enable = true;
+    ### Whether to enable XWayland
+    #xwayland.enable = true;
+  #};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
