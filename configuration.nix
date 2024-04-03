@@ -24,7 +24,7 @@
   #boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "peak-nixos"; # Define your hostname.
+  networking.hostName = "nixos-peak001"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -59,13 +59,13 @@
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
 
   # Enable the KDE Plasma Desktop Environment.
-  #services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  #services.xserver.displayManager.gdm.enable = true;
   #services.xserver.displayManager.sddm.wayland = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  #services.xserver.desktopManager.plasma5.enable = true;
+  #services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
   #services.xserver.desktopManager.plasma6.enable = true;
-  #services.xserver.displayManager.defaultSession = "plasmawayland";
+  services.xserver.displayManager.defaultSession = "plasmawayland";
 
   # Window Managers
   #services.xserver.windowManager.stumpwm.enable = true;
@@ -217,7 +217,7 @@
     #pkgs.tcl
     pkgs.file
     pkgs.libz
-    #pkgs.google-chrome
+    pkgs.google-chrome
     pkgs.dropbox
     pkgs.gnome.gnome-system-monitor
     pkgs.xfce.catfish
@@ -263,11 +263,11 @@
     pkgs.gnupatch
     pkgs.ethtool
     #Python
-    #(python3.withPackages(ps: with ps; [ import tcl tk matplotlib django flask pandas libz requests]))
+    (python3.withPackages(ps: with ps; [ import tcl tk matplotlib django flask pandas libz requests]))
     pkgs.python311Full
-    #pkgs.python311Packages.tkinter
-    #pkgs.python311Packages.pip
-    #pkgs.python311Packages.pyinstaller-versionfile
+    pkgs.python311Packages.tkinter
+    pkgs.python311Packages.pip
+    pkgs.python311Packages.pyinstaller-versionfile
     pkgs.libsForQt5.kalk
     pkgs.microsoft-edge
     helix

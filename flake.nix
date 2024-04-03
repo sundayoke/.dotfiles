@@ -16,6 +16,9 @@
 
      # helix editor, use the master branch
     helix.url = "github:helix-editor/helix/master";
+
+    # Etcher use stable branch
+    etcher.url ="nixpkgs/nixos-23.11";
   };
 
   outputs = { self, nixpkgs, ... }:
