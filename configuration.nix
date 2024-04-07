@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      #./nix-ld.nix
+      ./nix-ld.nix
     ];
 
 
@@ -94,8 +94,8 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable Flatpak
-  services.flatpak.enable = true;
+  ## Enable Flatpak
+  #services.flatpak.enable = true;
 
   services.samba.enableWinbindd = true;
 
@@ -177,8 +177,8 @@
     pkgs.gnome.zenity
     pkgs.lsof
     gparted
-    #pkgs.libfilezilla
-    #pkgs.filezilla
+    pkgs.libfilezilla
+    pkgs.filezilla
     libreoffice
     zoom-us
     vlc
@@ -235,7 +235,8 @@
     pkgs.gnome.nautilus
     pkgs.cpulimit
     pkgs.libsForQt5.kate
-    pkgs.authy
+    #pkgs.authy
+    pkgs.logseq
     pkgs.jre8
     #pkgs.rofi
     pkgs.lxde.lxrandr
@@ -268,11 +269,14 @@
     pkgs.python311Packages.tkinter
     pkgs.python311Packages.pip
     pkgs.python311Packages.pyinstaller-versionfile
+    pkgs.python311Packages.ipython
+    pkgs.python311Packages.pyfuse3
+    pkgs.python311Packages.jupyter-core
     pkgs.libsForQt5.kalk
+    pkgs.haskellPackages.libfuse3
     pkgs.microsoft-edge
     helix
-    pkgs.haskellPackages.libfuse3
-    pkgs.python311Packages.pyfuse3
+    #pkgs.droidcam
     #pkgs.kitty
     #pkgs.wofi
 
@@ -298,7 +302,7 @@
     #wineWowPackages.waylandFull
 
     # OBS Packages
-    (pkgs.wrapOBS { plugins = [ pkgs.obs-studio-plugins.obs-vaapi ]; })
+    (pkgs.wrapOBS { plugins = [ pkgs.obs-studio-plugins.droidcam-obs pkgs.obs-studio-plugins.obs-vaapi ]; })
   ];
 
   nixpkgs.config.pulseaudio = true;
