@@ -59,13 +59,17 @@
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
+  #services.xserver.displayManager.sddm.enable = true;
   #services.xserver.displayManager.gdm.enable = true;
   #services.xserver.displayManager.sddm.wayland = true;
   #services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  #services.xserver.desktopManager.plasma5.enable = true;
   #services.xserver.desktopManager.plasma6.enable = true;
-  services.xserver.displayManager.defaultSession = "plasmawayland";
+  #services.xserver.displayManager.defaultSession = "plasmawayland";
+
+
+  services.xserver.desktopManager.budgie.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
 
   # Window Managers
   #services.xserver.windowManager.stumpwm.enable = true;
@@ -259,19 +263,19 @@
     #pkgs.i3blocks-gaps
     pkgs.brightnessctl
     pkgs.gnome.nautilus
-    pkgs.tk
+    #pkgs.tk
     pkgs.mktemp
     pkgs.gnupatch
     pkgs.ethtool
     #Python
-    (python3.withPackages(ps: with ps; [ import tcl tk matplotlib django flask pandas libz requests]))
+    (python3.withPackages(ps: with ps; [ import tcl tk matplotlib django flask pandas libz requests ipython jupyter pyfuse3 numpy tkinter pip pyinstaller-versionfile stdenv]))
     pkgs.python311Full
-    pkgs.python311Packages.tkinter
-    pkgs.python311Packages.pip
-    pkgs.python311Packages.pyinstaller-versionfile
-    pkgs.python311Packages.ipython
-    pkgs.python311Packages.pyfuse3
-    pkgs.python311Packages.jupyter-core
+    #pkgs.python311Packages.tkinter
+    #pkgs.python311Packages.pip
+    #pkgs.python311Packages.pyinstaller-versionfile
+    #pkgs.python311Packages.ipython
+    #pkgs.python311Packages.pyfuse3
+    #pkgs.python311Packages.jupyter
     pkgs.libsForQt5.kalk
     pkgs.haskellPackages.libfuse3
     pkgs.microsoft-edge
