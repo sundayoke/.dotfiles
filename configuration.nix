@@ -59,17 +59,23 @@
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
 
   # Enable the KDE Plasma Desktop Environment.
-  #services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
   #services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.displayManager.sddm.wayland = true;
+  services.xserver.displayManager.sddm.wayland.enable = true;
   #services.xserver.desktopManager.gnome.enable = true;
   #services.xserver.desktopManager.plasma5.enable = true;
   #services.xserver.desktopManager.plasma6.enable = true;
+  services.desktopManager.plasma6.enable = true;
   #services.xserver.displayManager.defaultSession = "plasmawayland";
 
+  ## Budgie Desktop Manager
+  #services.xserver.desktopManager.budgie.enable = true;
+  #services.xserver.displayManager.lightdm.enable = true;
 
-  services.xserver.desktopManager.budgie.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
+  #environment.budgie.excludePackages = with pkgs; [
+  #mate.mate-terminal
+  #vlc
+#];
 
   # Window Managers
   #services.xserver.windowManager.stumpwm.enable = true;
@@ -178,7 +184,7 @@
     git
     pkgs.spotify
     pkgs.dialog
-    pkgs.gnome.zenity
+    #pkgs.gnome.zenity
     pkgs.lsof
     gparted
     pkgs.libfilezilla
@@ -186,7 +192,7 @@
     libreoffice
     zoom-us
     vlc
-    etcher
+    #etcher
     coreutils
     #binutils
     pciutils
@@ -205,7 +211,7 @@
     # nix
     nixpkgs-lint
     nixpkgs-fmt
-    nixfmt
+    nixfmt-classic
     pkgs.monitor
     pkgs.efibootmgr
     pkgs.os-prober
@@ -240,7 +246,7 @@
     pkgs.cpulimit
     pkgs.libsForQt5.kate
     #pkgs.authy
-    pkgs.logseq
+    #pkgs.logseq
     pkgs.jre8
     #pkgs.rofi
     pkgs.lxde.lxrandr
@@ -296,8 +302,11 @@
 
     # wine-staging (version with e7i%"KSuCd6mE-E%xperimental features)
     #wineWowPackages.staging
-    wineWowPackages.stagingFull
+    #wineWowPackages.stagingFull
     #winePackages.stagingFull
+
+    # Wine unstable
+    pkgs.wineWowPackages.unstableFull
 
     # winetricks (all versions)
     winetricks
@@ -332,6 +341,21 @@
     "vm.min_free_kbytes" = 65536;             # Minimum free memory for safety (in KB), can help prevent memory exhaustion situations
     "vm.swappiness" = 70;                      # how aggressively the kernel swaps data from RAM to disk. Lower values prioritize keeping data in RAM,
     "vm.vfs_cache_pressure" = 50;             # Adjust vfs_cache_pressure (0-1000), how the kernel reclaims memory used for caching filesystem objects
+  };
+
+  # OOM configuration:
+  systemd = {
+    # Create a separate slice for nix-daemon that is
+    # memory-managed by the userspace systemd-oomd killer
+    slices."nix-daemon".sliceConfig = {
+      ManagedOOMMemoryPressure = "kill";
+      ManagedOOMMemoryPressureLimit = "50%";
+    };
+    services."nix-daemon".serviceConfig.Slice = "nix-daemon.slice";
+
+    # If a kernel-level OOM event does occur anyway,
+    # strongly prefer killing nix-daemon child processes
+    services."nix-daemon".serviceConfig.OOMScoreAdjust = 1000;
   };
 
   programs.steam = {

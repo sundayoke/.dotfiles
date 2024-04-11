@@ -6,19 +6,23 @@
   description = "My first flake!";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.11";
+    #nixpkgs.url = "nixpkgs/nixos-23.11";
 
     # use the following for unstable:
-    #nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
 
     # or any branch you want:
     # nixpkgs.url = "nixpkgs/{BRANCH-NAME}";
 
      # helix editor, use the master branch
-    helix.url = "github:helix-editor/helix/master";
+    #helix.url = "github:helix-editor/helix/master";
 
     # Etcher use stable branch
-    etcher.url ="nixpkgs/nixos-unstable";
+    #etcher.url ="nixpkgs/nixos-23.11";
+
+    #Wine use unstable branch
+    #wineWowPackages.unstableFull.url = "nixpkgs/nixos-unstable";
+    #vscode.url = "nixpkgs/nixos-unstable";
   };
 
   outputs = { self, nixpkgs, ... }:
