@@ -6,6 +6,8 @@
   description = "My first flake!";
 
   inputs = {
+      spotify.url ="nixpkgs/nixos-23.11";
+
     #nixpkgs.url = "nixpkgs/nixos-23.11";
 
     # use the following for unstable:
@@ -19,6 +21,8 @@
 
     # Etcher use stable branch
     #etcher.url ="nixpkgs/nixos-23.11";
+
+
 
     #Wine use unstable branch
     #wineWowPackages.unstableFull.url = "nixpkgs/nixos-unstable";
